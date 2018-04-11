@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wskderliner</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/Tremula.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="dependency/jquery.js"></script>
+    <script src="dependency/jquery.ba-throttle-debounce.min.js"></script>
+
+    <script src="dependency/jsBezier-0.6.js"></script>
+    <script src="dependency/hammer.js"></script>
+
+
+    <script src="js/tremulaConfig.js"></script>
+    <script src="js/tremulaControls.js"></script>
+
+    <script src="js/Tremula.js"></script>
+</head>
+<body class="doReflect">
+<div class="head" style="height: 60px">
+    <h2><img src="imgs/WskderlinerLogo.png" alt="logo" height="60"></h2>
+</div>
+<div class="tremulaContainer main"></div>
+<div class="footer"><p>&copy;Copyright 2018 by Wskderliner</p></div>
+<div class="mask-wrap" style="display: none;">
+    <div class="mask">
+        <div class="img-wrap"></div>
+        <div class="des">
+            <h3 class="title"></h3>
+            <ul></ul>
+            <a id="buyLink" href="#" class="button red" target="_blank">BUY IT NOW !</a>
+        </div>
+        <div id="closeModal">
+            <span>X</span>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const productList=[
+        {id:1,title:'Wskderliner Hocker Klappbar Falthocker Camping Faltbar Klein Stuhl Folding Stool Angeln Jagd Tragbar Segeltuch mit 3 Bügeleisen Beine(blau)',link:'https://www.amazon.de/dp/B071K5GYK5',des:['1 Stück Faltbar Camping Hocker, erweitern Größe ist 22 x 22 x 31 cm (L x B x H), Faltgröße ist 35 cm hoch, leicht zu transportieren, den Platz zu sparen.','Das Metall Stativ des falthocker camping ca. 2,0 cm, max. Lastgewicht 100kg, hohl, das Klapphocker Gewicht ist 310g, leicht, sehr tragbar.','Geeignet für: Picknick, Angeln, Camping, Wandern, Sandstrand, Klettern, Sonnenbaden, Gartenruhe, Park, Rasen und andere Outdoor Aktivitäten.']},
+
+        {id:2,title:'Wskderliner Hocker Klappbar Falthocker Camping Faltbar Klein Stuhl Folding Stool Angeln Jagd Tragbar Segeltuch mit 3 Bügeleisen Beine(blau)',link:'https://www.amazon.de/dp/B072KVK3YY',des:['1 Stück Faltbar Camping Hocker, erweitern Größe ist 22 x 22 x 31 cm (L x B x H), Faltgröße ist 35 cm hoch, leicht zu transportieren, den Platz zu sparen.','Das Metall Stativ des falthocker camping ca. 2,0 cm, max. Lastgewicht 100kg, hohl, das Klapphocker Gewicht ist 310g, leicht, sehr tragbar.','Material: Eisen Beine und Leinwand, ist die Leinwand stark und langlebig, schwer zu beschädigen.Die Oberfläche der Beine haben eine Schicht von Farbe, nicht leicht zu rosten, aber nicht in Wasser eingeweicht.','Material: Eisen Beine und Leinwand, ist die Leinwand stark und langlebig, schwer zu beschädigen.Die Oberfläche der Beine haben eine Schicht von Farbe, nicht leicht zu rosten, aber nicht in Wasser eingeweicht.']},
+
+        {id:3,title:'Wskderliner Tischklammern Edelstahl Tischdecke Clips Tischdeckenklammer Tischdeckenklammern Metall für Gartentisch Silber 6 x 5,3 cm Packung von 20',link:'https://www.amazon.de/dp/B073PZS3RL',des:['Größe: 6 x 5,3 x 1,2 cm, 0,5 mm dick, kleines Volumen, besetzen ein wenig von der Tafelfläche, natürlicher, wie ein Teil des Tisches.','Material: Diese tischklammern edelstahl sind aus Edelstahl gefertigt, stark, langlebig, schwer zu rosten, können Sie eine lange Zeit verwenden.','Anwendung: Garten, Haus, Outdoor, Party, Hochzeit, Picknicks, in diesen Szenen können diese Tischdeckenclips die Tischdecke festklemmen.']},
+
+        {id:4,title:'Wskderliner Kescher Kinder Ausziehbar Teleskop Stabil Schmetterling Insekt Klein Angeln Fangen 38-85cm Packung von 2(grün und blau)',link:'https://www.amazon.de/dp/B072XDXPC3',des:['Größe: schrumpfen Größe ist 38 cm (L), verlängern Größe ist 85 cm (L), der Netzring Durchmesser ist 20 cm, seine Tiefe ist 20cm.','Anwendung: Für Kinder oder Erwachsene fangen Schmetterlinge, Bugs, Libelle oder andere Insekten, auch einige kleine Fische, dann können sie ihre große Natur genießen.','Material: Edelstahl ausziehbarer Stent und Nylon Netz, stark, langlebig und leicht, bequem für Kinder zu tragen.']},
+
+        {id:5,title:'Wskderliner Kleiderbügel Clips Anti Rutsch Metall Verchromten für Hängende Hosen Socken Röcke Mäntel Pack von 10',link:'https://www.amazon.de/dp/B072BN67KP',des:['Packung mit 10 verstellbaren verchromten Metallclip Kleiderbügeln','Platz sparen: Mit den verstellbaren Clips sind diese Kleiderhaken einfach und kompakt und machen vollen Raum','Einstellbare Clips: Perfekt für hängende Hosen Socken Mäntel Röcke\n','Starke Krokodil Clips und Anti Rutsch Linien: um Kleidungsstücke fest zu fangen']},
+
+        {id:6,title:'wskderliner Cat Rolling Kratzbaum Eingeschlossene Ball Scratch Spielzeug für Intelligenz Unterhaltung mit 3 Bälle Innen',link:'https://www.amazon.de/dp/B07BBPCFYL',des:['Material: überlegenes Sisal, ungiftig und geruchlos, sorgt dafür, dass Ihre Katze sicher spielt und beißt. Größe: 29 x 8 cm. Durchmesser: 6 cm.','Helfen Sie dabei, ein Katzengehirn und ein Sinnesorgan zu trainieren und zu trainieren, und vermeiden Sie das Auftreten von Depressionen, selbst wenn der Besitzer nicht anwesend ist.','Bestes Geschenk für Ihre schöne Katze: Katzen mögen die Fähigkeiten, die sie im Spiel gut können: Klettern, Laufen, Springen, Verstecken, Flattern. Wählen Sie Spielzeuge, die diese Verhaltensweisen inspirieren.']},
+
+        {id:7,title:'Wskderliner Slalom Zapfen farbigen Sporting Rollerskaten Flor Hindernis 50 Stück',link:'https://www.amazon.de/dp/B072XJ2FH7',des:['Geeignet für: Roller Skaten, Dynamic, Teller, shuanglong Board, Drift, und andere Sport-Training.','Material: PE-Kunststoff, gute Lichtechtheit, strapazierfähig, weich, leicht, each One 11 g.','Größe: Durchmesser: 7 cm, Höhe: 8 cm, kleine Größe, bequem zu tragen.']},
+
+        {id:8,title:'Wskderliner Tischnummern Hochzeit Holz Halter Vintage Hölzern Zahlen Deko Party Hotel Tabelle Dekoration 1 to 20',link:'https://www.amazon.de/dp/B071ZPXHF8',des:['20 Stücke Tischnummern Hochzeit Holz Halter, jede Holzzahl Inhaber auf einem Tisch, genug für Sie zu verwenden.','Geeignet für: Hochzeit, Wohltätigkeits-Gala, Weihnachtsfeier, Geburtstagsfeier, Taufe, Geschäftsempfang.','Es hat Basis, kann leicht auf die Gast-Tische gesetzt werden.Es ist bequem zu platzieren und zu empfangen.']},
+
+    ];
+    $(function () {
+        setTimeout(function(){
+            var tremula = tremulaInit();
+            var control=attachDemoControls(tremula);
+            control.btnL3();
+        });
+        $('body').removeClass('doReflect');
+    });
+    function closeModal() {
+        $('.mask-wrap ').removeClass('bounceIn').addClass('bounceOut');
+        setTimeout(function () {
+            $('.mask-wrap ').hide();
+        },500);
+    }
+    $('#closeModal').click(function () {
+        closeModal();
+    });
+    window.addEventListener('keydown',function (ev) {
+        if(ev.keyCode==27){
+            closeModal();
+        }
+    });
+    function displayProductDetai(src,id) {
+        $('.mask-wrap ').removeClass('bounceOut').addClass('bounceIn');
+        var wrap=$('.mask-wrap .img-wrap').empty();
+        $('.mask-wrap .des .title').text('');
+        $('.mask-wrap .des ul').empty();
+        $('<img/>').attr('src',src).appendTo(wrap);
+        $('#buyLink').attr('href','#');
+        var obj;
+        for(var i=0;i<productList.length;i++){
+            if(productList[i].id==id){
+                obj=productList[i];
+            }
+        }
+        console.log(obj);
+        if(obj){
+            $('.mask .title').text(obj.title);
+            obj.des.forEach(function (value,index) {
+                $('<li>').text(value).appendTo($('.mask .des ul'));
+            });
+            $('#buyLink').attr('href',obj.link);
+            $('.mask-wrap ').show();
+        }
+    }
+    function tremulaInit(){
+        console.log('starting tremula');
+
+        $tremulaContainer = $('.tremulaContainer');
+
+
+        var tremula = new Tremula();
+        var config = tremulaConfigs.default.call(tremula);
+
+        tremula.init($tremulaContainer,config,this);
+
+        var doScrollEvents = function(o){
+            if(o.scrollProgress>.7){
+                if(!tremula.cache.endOfScrollFlag){
+                    tremula.cache.endOfScrollFlag = true;
+                    console.log('END OF SCROLL!')
+                }
+            }
+        }//doScrollEvents()
+
+        tremula.setOnChangePub(doScrollEvents);
+
+        return tremula;
+    }
+</script>
+</html>
