@@ -6,7 +6,7 @@ tremulaConfigs = {
 			data                : null,
 			maxWidthClassMap		: {mini:50,small:143,medium:244,large:2000},//large will apply to anything over medium limit
 			lastContentBlock 		: {
-				template :'<div class="lastContentItem">Coming soon...</div>',
+				template :'<div class="lastContentItem" style="font-size: 32px;">Coming soon...</div>',
 				layoutType :'tremulaBlockItem',
 				noScaling:true,
 				w:300,
