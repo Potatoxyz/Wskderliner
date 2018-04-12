@@ -415,23 +415,6 @@ function attachDemoControls(tremula){
 			{id:8,imgUrl:'./imgs/8.jpg'}
 		];
         tremula.appendData(rs,tremula.dataAdapters.JudyItem);
-		// var dataUrl = 'http://ws-decor.art.com/api/decorProductSearch?engine=judy&pageNumber=1&numProducts=200&rsLimit=1000&moodId=undefined&paletteHex=dfdd78-695d87&statusMsg=0.632s%3A+200+of+1000+returned&refinements=&keyword=abstract&includePoster=true&includeArt=true&includeDecorProducts=false&totalRetrieved=0&getDataFromThisUrl=null&totalFound=1000&pageReturned=4';
-        //
-		// // var dataUrl = 'decorProductSearch.json';
-		// $.getJSON(dataUrl,function(res){
-		//
-        //
-		// 	var rs = res.ImageDetails.filter(function(o,i){return o.ImageDimensions[2].PixelHeight > o.ImageDimensions[2].PixelWidth * .5});//filter out any with a really wide aspect ratio.
-		// 	if(refreshData){
-		// 		console.log('refresh',rs);
-		// 		tremula.refreshData(rs,tremula.dataAdapters.JudyItem);//art.com
-		// 		if(cb)cb();
-		// 	}else{
-		// 		console.log('append',rs);
-		// 		tremula.appendData(rs,tremula.dataAdapters.JudyItem);//art.com
-		// 		if(cb)cb();
-		// 	}
-		// }).fail(function(){console.log('getJSON problem.')});
 	}
 	window.loadHorizontalStepped = function loadHorizontalStepped(){
 		tremula.Grid.removeAll();

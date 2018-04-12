@@ -2,14 +2,15 @@
 	-moz-perspective:1000px;
 	-webkit-perspective:1000;
 	perspective:1000;
-	
+	background: #978878;
 	overflow:hidden
 }
 .gridBox{
 	background:#fafafa url() no-repeat center center;
 	box-shadow:1px 0 5px rgba(0,0,0,0.2);
 	position:absolute;
-	
+	width: 550px!important;
+	height: 550px!important;
 }
 .gridBox.loaded{background-image:none}
 .gridBox.isLastContentBlock{border: none;background: none;box-shadow: none;}

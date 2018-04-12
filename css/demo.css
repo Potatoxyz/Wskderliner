@@ -1,7 +1,5 @@
 body{
 	font-family: 'Oswald', sans-serif;
-	font-size: .8em;
-	background-color: #ddd;
 }
 
 *{
@@ -10,9 +8,10 @@ body{
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;				
+	user-select: none;
+	margin: 0;
+	padding:0;
 }
-
 a{
 	color: inherit;
 	text-decoration: inherit;
@@ -113,19 +112,27 @@ div.mask-wrap .mask .img-wrap img{
 	border-radius: 10px;
 }
 div.head{
-	background-color: #E8EEE6;
+	background-color: #B0A192;
+	position: fixed;
+	top:0;
+	z-index: 9999;
+	width: 100%;
+	box-shadow: 0 2px 15px rgba(0,0,0,.2);
 }
 div.footer{
 	position: fixed;
 	bottom: 0;
 	height: 60px;
-	margin-left: 30px;
+	z-index: 9999;
+	width: 100%;
+	background: #B0A192;
+	color: #1D1A1A;
 }
 div.footer p{
 	line-height: 60px;
-	text-align: center;
-	font-size: 12px;
-	margin: 0;
+	text-align: left;
+	font-size: 14px;
+	padding-left: 30px;
 }
 /* Tremula Styles  */
 
@@ -135,6 +142,7 @@ div.footer p{
 }
 .moneyShot{
 	width: 100%;
+	height: 100%;
 }
 
 .boxLabel{display: none;font-size: 12px;font-weight: 100; color:#666;}
